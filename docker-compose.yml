@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  todosDB:
+    image: postgres:15.3 # <= postgresdatabase version
+    container_name: todos-db # <= DNS hacia el servidor donde esta la base de datos
+    restart: always # <= levanta la base de datos siempre
+    ports: 
+      - 5432:5432 # <= default postgres db port
+    environment: # <= variables de entorno
+      - POSTGRES_USER=postgres # <= postgres sera el valor del postgres_user 
+      - POSTGRES_PASSWORD=postgres
+    volumes: # <= permite conectar una carpeta de nuestra computadora con una del servidor o en este caso nuestra imagen que estamos teniendo acá
+      - ./postgres:/var/lib/postgresql/data
